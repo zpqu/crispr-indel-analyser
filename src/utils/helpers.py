@@ -55,3 +55,4 @@ def clean_sequence(seq: Union[str, None]) -> str:
     ):
         return ""
     return ''.join(c.upper() for c in seq if c.upper() in 'ATCG')
+

@@ -105,3 +105,4 @@ def test_load_and_process_meta_csv(sample_meta_csv):
     assert meta_data['sample2']['fp_rc'] == 'TGGATC'
     assert meta_data['sample2']['rp'] == 'CGAAGT'
     assert meta_data['sample2']['rp_rc'] == 'ACTTCG'
+

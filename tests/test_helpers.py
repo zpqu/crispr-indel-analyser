@@ -46,3 +46,4 @@ def test_clean_sequence():
     assert clean_sequence("atcg") == "ATCG"
     assert clean_sequence("  ") == ""
     assert clean_sequence("NaN") == ""
+
