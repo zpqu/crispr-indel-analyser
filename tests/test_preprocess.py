@@ -1,5 +1,17 @@
 # tests/test_preprocess.py
-#
+"""Unit tests for metadata preprocessing module.
+
+This module tests the functionality of `load_and_process_meta_csv` from
+`src.preprocess.meta_preprocessor`. It verifies that:
+- CSV is correctly parsed
+- Sequences are cleaned (non-ATCG characters removed)
+- Reverse complements are accurately generated
+- Output structure matches expected nested dictionary format
+
+Uses pytest fixtures defined in `conftest.py` to ensure consistency
+and reduce code duplication.
+"""
+
 # Copyright (C) 2025 Zhipeng Qu
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,18 +31,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-"""Unit tests for metadata preprocessing module.
-
-This module tests the functionality of `load_and_process_meta_csv` from
-`src.preprocess.meta_preprocessor`. It verifies that:
-- CSV is correctly parsed
-- Sequences are cleaned (non-ATCG characters removed)
-- Reverse complements are accurately generated
-- Output structure matches expected nested dictionary format
-
-Uses pytest fixtures defined in `conftest.py` to ensure consistency
-and reduce code duplication.
-"""
 
 from src.preprocess.meta_preprocessor import load_and_process_meta_csv
 from tests.conftest import sample_meta_csv

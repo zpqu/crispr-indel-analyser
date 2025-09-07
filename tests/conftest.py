@@ -1,5 +1,15 @@
 # tests/conftest.py
-#
+"""Pytest fixtures for CRISPR pipeline unit tests.
+
+This module defines reusable test fixtures for:
+- Sample metadata CSV (simulated file input)
+- Expected processed reference and barcode data
+These fixtures are used across multiple test modules to ensure consistency
+and reduce code duplication.
+
+All sequence data is synthetic and for testing only.
+"""
+
 # Copyright (C) 2025 Zhipeng Qu
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,16 +29,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-"""Pytest fixtures for CRISPR pipeline unit tests.
 
-This module defines reusable test fixtures for:
-- Sample metadata CSV (simulated file input)
-- Expected processed reference and barcode data
-These fixtures are used across multiple test modules to ensure consistency
-and reduce code duplication.
-
-All sequence data is synthetic and for testing only.
-"""
 import pytest
 from io import StringIO
 

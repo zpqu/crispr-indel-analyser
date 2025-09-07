@@ -1,5 +1,14 @@
 # src/preprocess/meta_preprocessor.py
-#
+"""Preprocesses sample metadata CSV with target, flanking, and primer sequences.
+
+This module provides a robust function to load and process a metadata CSV
+containing sample-specific sequences (target, up/down flanks, primers).
+It cleans invalid characters and generates reverse complements.
+
+Supports both file paths (str, Path) and file-like objects (e.g. StringIO)
+for maximum flexibility in production and testing environments.
+"""
+
 # Copyright (C) 2025 Zhipeng Qu
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,15 +28,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-"""Preprocesses sample metadata CSV with target, flanking, and primer sequences.
-
-This module provides a robust function to load and process a metadata CSV
-containing sample-specific sequences (target, up/down flanks, primers).
-It cleans invalid characters and generates reverse complements.
-
-Supports both file paths (str, Path) and file-like objects (e.g. StringIO)
-for maximum flexibility in production and testing environments.
-"""
 
 from typing import Union, TextIO
 from os import PathLike
