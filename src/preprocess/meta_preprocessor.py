@@ -29,14 +29,14 @@ for maximum flexibility in production and testing environments.
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import Union, TextIO
+from typing import TextIO
 from os import PathLike
 import os
 import pandas as pd
 from src.utils.helpers import reverse_complement, clean_sequence
 
 
-def load_and_process_meta_csv(meta_csv: Union[str, PathLike, TextIO]) -> dict:
+def load_and_process_meta_csv(meta_csv: str | PathLike | TextIO) -> dict:
     """Loads and processes sample metadata CSV into a structured dictionary.
 
     Accepts:

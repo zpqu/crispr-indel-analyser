@@ -21,9 +21,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import Union
-
-
 def reverse_complement(seq: str) -> str:
     """Returns the reverse complement of a DNA sequence.
 
@@ -39,7 +36,7 @@ def reverse_complement(seq: str) -> str:
     return seq.upper().translate(trans)[::-1]
 
 
-def clean_sequence(seq: Union[str, None]) -> str:
+def clean_sequence(seq: str | None) -> str:
     """Cleans a DNA sequence by removing invalid characters.
 
     Args:
