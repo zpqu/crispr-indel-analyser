@@ -25,7 +25,6 @@ import pandas as pd
 import pytest
 import gzip
 from pathlib import Path 
-from io import StringIO
 from src.io.writer import write_table
 from src.io.fastq import read_fastq
 
@@ -42,30 +41,31 @@ def test_write_table(tmp_path):
     assert "A\tB" in content
     assert "1\t2" in content
 
-
-def test_read_fastq(tmp_path):
-    """Test read_fastq reads valid FASTQ."""
+@pytest.mark.parametrize("extension,use_gzip", [
+    (".fastq", False),
+    (".fastq.gz", True)
+])
+def test_read_fastq_formats(tmp_path, extension, use_gzip):
+    """Test read_fastq reads both regular and gzipped FASTQ files."""
     fastq_content = "@read1\nATCG\n+\nIIII\n"
-    fastq_path = tmp_path / "test.fastq"
-    fastq_path.write_text(fastq_content)
-
-    records = list(read_fastq(fastq_path))
-    assert len(records) == 1
-    assert str(records[0].seq) == "ATCG"
-    assert records[0].id == "read1"
+    fastq_path = tmp_path / f"test{extension}"
     
-
-
-def test_read_fastq_gz(tmp_path):
-    """Test read_fastq reads gzipped FASTQ."""
-    fastq_content = "@read1\nATCG\n+\nIIII\n"
-    fastq_path = tmp_path / "test.fastq.gz"
-
-    with gzip.open(fastq_path, 'wt') as f:
-        f.write(fastq_content)
-
+    if use_gzip:
+        with gzip.open(fastq_path, 'wt') as f:
+            f.write(fastq_content)
+    else:
+        fastq_path.write_text(fastq_content)
+    
     records = list(read_fastq(fastq_path))
     assert len(records) == 1
     assert str(records[0].seq) == "ATCG"
     assert records[0].id == "read1"
+
+
+def test_read_fastq_nonexistent_file(tmp_path):
+    """Test read_fastq raises FileNotFoundError for non-existent file."""
+    nonexistent_file = tmp_path / "non_existent.fastq"
+    
+    with pytest.raises(FileNotFoundError):
+        list(read_fastq(nonexistent_file))
 
