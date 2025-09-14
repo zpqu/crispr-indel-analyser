@@ -53,3 +53,24 @@ def clean_sequence(seq: str | None) -> str:
         return ""
     return ''.join(c.upper() for c in seq if c.upper() in 'ATCG')
 
+
+def hamming_distance(s1: str, s2: str) -> int | float:
+    """Calculates Hamming distance between two strings.
+
+    Args:
+        s1: First string.
+        s2: Second string.
+
+    Returns:
+        Integer distance or float('inf') if length mismatch.
+
+    Raises:
+        TypeError if s1 or s2 is not string type.
+    """
+    if not isinstance(s1, str) or not isinstance(s2, str):
+        raise TypeError("Both arguments must be strings")
+
+    if len(s1) != len(s2):
+        return float('inf')
+    return sum(c1 != c2 for c1, c2 in zip(s1, s2))
+
