@@ -29,6 +29,7 @@ and reduce code duplication.
 All sequence data is synthetic and for testing only.
 """
 
+import gzip
 import pytest
 from io import StringIO
 
@@ -71,4 +72,21 @@ def processed_meta_data():
             'rp_rc': 'ACTTCG'        # reverse_complement("CGAAGT")
         }
     }
+
+
+@pytest.fixture
+def temp_fastq(tmp_path):
+    """Creates a temporary FASTQ file for testing."""
+    fastq = tmp_path / "test.fq"
+    fastq.write_text("@read1\nATCG\n+\nIIII\n")
+    return fastq
+
+
+@pytest.fixture
+def temp_fastq_gz(tmp_path):
+    """Creates a temporary gzipped FASTQ file."""
+    fastq_gz = tmp_path / "test.fq.gz"
+    with gzip.open(fastq_gz, "wt") as f:
+        f.write("@read1\nATCG\n+\nIIII\n")
+    return fastq_gz
 
