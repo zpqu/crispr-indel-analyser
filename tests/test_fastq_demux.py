@@ -125,30 +125,44 @@ class TestFASTQDemultiplexer:
         seq = "AGGTCA" + long_spacer + "GTAGCT"
         assert demux._match_read(seq) == "unknown"
 
-    def test_demultiplex_reads_uncompressed_fastq(self, sample_meta_csv, temp_fastq):
+    def test_demultiplex_reads_uncompressed_fastq(
+        self, 
+        sample_meta_csv, 
+        temp_fastq,
+        tmp_path,
+    ):
         """Test demultiplexing uncompressed FASTQ."""
+        output_dir = tmp_path / "demultiplexed"
         demux = FASTQDemultiplexer(
             sample_meta_csv,
             mismatch=0,
-            output_dir="tmp_demux_test_plain"
+            output_dir=output_dir
         )
         demux.demultiplex(temp_fastq)
         demux.close()
         # Check ouput file was created
-        output_file = Path("tmp_demux_test_plain") / "unknown.fq.gz"
+        output_file = output_dir / "unknown.fq.gz"
         assert output_file.exists()
+        assert output_file.stat().st_size > 0
         
-    def test_demultiplex_reads_gzipped_fastq(self, sample_meta_csv, temp_fastq_gz):
+    def test_demultiplex_reads_gzipped_fastq(
+        self, 
+        sample_meta_csv, 
+        temp_fastq_gz,
+        tmp_path,
+    ):
         """Test demultiplexing gzipped FASTQ."""
+        output_dir = tmp_path / "demultiplexed"
         demux = FASTQDemultiplexer(
             sample_meta_csv,
             mismatch=0,
-            output_dir="tmp_demux_test_gz"
+            output_dir=output_dir,
         )
         demux.demultiplex(temp_fastq_gz)
         demux.close()
-        output_file = Path("tmp_demux_test_gz") / "unknown.fq.gz"
+        output_file = output_dir / "unknown.fq.gz"
         assert output_file.exists()
+        assert output_file.stat().st_size > 0
         
     def test_counts_dict_returns_copy(self, sample_meta_csv):
         """Test counts_dict returns a copy, not reference."""
