@@ -106,15 +106,15 @@ def temp_demux_dir(tmp_path):
 
     # sample1.fq.gz: unedited read
     fq_gz = demux_dir / "sample1.fq.gz"
-    write_gz(fq_gz, "@read1\nTTAAACCCGGGAA\n+\nIIIIIIIIIIIII\n")
+    write_gz(fq_gz, "@read1\nTTCAAACCCGGGAAG\n+\nIIIIIIIIIIIIIII\n")
 
     # sample1_ins.fq.gz: insertion TTT
     fq_ins = demux_dir / "sample1_ins.fq.gz"
-    write_gz(fq_ins, "@read2\nTTAAATTTCCCGGGAA\n+\nIIIIIIIIIIIIIIII\n")
+    write_gz(fq_ins, "@read2\nTTCAAATTTCCCGGGAAG\n+\nIIIIIIIIIIIIIIIIII\n")
 
     # sample1_del.fq.gz: deletion (missing CCC)
     fq_del = demux_dir / "sample1_del.fq.gz"
-    write_gz(fq_del, "@read3\nTTAAGGGAA\n+\nIIIIIIIII\n")
+    write_gz(fq_del, "@read3\nTTCAAGGGAAG\n+\nIIIIIIIIIII\n")
     
     return demux_dir
 
