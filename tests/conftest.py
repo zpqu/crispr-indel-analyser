@@ -32,6 +32,8 @@ All sequence data is synthetic and for testing only.
 import gzip
 import pytest
 from io import StringIO
+from pathlib import Path
+from src.analysis.indel_analyser import IndelAnalyser
 
 
 @pytest.fixture
@@ -89,4 +91,49 @@ def temp_fastq_gz(tmp_path):
     with gzip.open(fastq_gz, "wt") as f:
         f.write("@read1\nATCG\n+\nIIII\n")
     return fastq_gz
+
+
+@pytest.fixture
+def temp_demux_dir(tmp_path):
+    """Creates tempotary demux dir with mock FASTQ files."""
+    demux_dir = tmp_path / "demux"
+    demux_dir.mkdir()
+
+    # Helper function to write gzipped FASTQ
+    def write_gz(path: Path, content: str):
+        with gzip.open(path, "wt") as f:
+            f.write(content)
+
+    # sample1.fq.gz: unedited read
+    fq_gz = demux_dir / "sample1.fq.gz"
+    write_gz(fq_gz, "@read1\nTTAAACCCGGGAA\n+\nIIIIIIIIIIIII\n")
+
+    # sample1_ins.fq.gz: insertion TTT
+    fq_ins = demux_dir / "sample1_ins.fq.gz"
+    write_gz(fq_ins, "@read2\nTTAAATTTCCCGGGAA\n+\nIIIIIIIIIIIIIIII\n")
+
+    # sample1_del.fq.gz: deletion (missing CCC)
+    fq_del = demux_dir / "sample1_del.fq.gz"
+    write_gz(fq_del, "@read3\nTTAAGGGAA\n+\nIIIIIIIII\n")
+    
+    return demux_dir
+
+
+@pytest.fixture
+def result_dir(tmp_path):
+    """Provides temporary result directory."""
+    d = tmp_path / "results"
+    d.mkdir(exist_ok=True)
+    return d
+
+
+@pytest.fixture
+def indel_analyser(processed_meta_data, temp_demux_dir, result_dir):
+    """Creates an IndelAnalyser instance with test dependencies."""
+    return IndelAnalyser(
+        meta_data=processed_meta_data, 
+        demux_dir=temp_demux_dir, 
+        result_dir=result_dir, 
+        mismatch=0, 
+    )
 
