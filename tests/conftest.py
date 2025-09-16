@@ -40,7 +40,7 @@ from src.analysis.indel_analyser import IndelAnalyser
 def sample_meta_csv():
     """Provides a StringIO object simulating a metadata CSV file."""
     csv = """sample,target,up,down,fp,rp
-sample1,AAACCCGGG,TT,AA,AGGTCA,CTAGCT
+sample1,AAACCCGGG,TTC,AAG,AGGTCA,CTAGCT
 sample2,TGCAGCTA,CA,TG,GATCCA,CGAAGT"""
     return StringIO(csv)
 
@@ -52,10 +52,10 @@ def processed_meta_data():
         'sample1': {
             'target': 'AAACCCGGG',
             'target_rc': 'CCCGGGTTT',
-            'up': 'TT',
-            'up_rc': 'AA',
-            'down': 'AA',
-            'down_rc': 'TT',
+            'up': 'TTC',
+            'up_rc': 'GAA',
+            'down': 'AAG',
+            'down_rc': 'CTT',
             'fp': 'AGGTCA',
             'fp_rc': 'TGACCT',  # reverse_complement("AGGTCA")
             'rp': 'CTAGCT',

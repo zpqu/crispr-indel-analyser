@@ -59,7 +59,7 @@ def test_load_and_process_meta_csv(sample_meta_csv):
 
     Example:
         Input row:
-            sample1,AAACCCGGG,TT,AA,AGGTCA,CTAGCT
+            sample1,AAACCCGGG,TTC,AAG,AGGTCA,CTAGCT
 
         Expected output:
             'target': 'AAACCCGGG'
@@ -83,10 +83,10 @@ def test_load_and_process_meta_csv(sample_meta_csv):
     # Content validation for sample1
     assert meta_data['sample1']['target'] == 'AAACCCGGG'
     assert meta_data['sample1']['target_rc'] == 'CCCGGGTTT'
-    assert meta_data['sample1']['up'] == 'TT'
-    assert meta_data['sample1']['up_rc'] == 'AA'
-    assert meta_data['sample1']['down'] == 'AA'
-    assert meta_data['sample1']['down_rc'] == 'TT'
+    assert meta_data['sample1']['up'] == 'TTC'
+    assert meta_data['sample1']['up_rc'] == 'GAA'
+    assert meta_data['sample1']['down'] == 'AAG'
+    assert meta_data['sample1']['down_rc'] == 'CTT'
     assert meta_data['sample1']['fp'] == 'AGGTCA'
     assert meta_data['sample1']['fp_rc'] == 'TGACCT'
     assert meta_data['sample1']['rp'] == 'CTAGCT'
