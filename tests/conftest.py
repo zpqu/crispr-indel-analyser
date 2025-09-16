@@ -41,6 +41,8 @@ def sample_meta_csv():
     """Provides a StringIO object simulating a metadata CSV file."""
     csv = """sample,target,up,down,fp,rp
 sample1,AAACCCGGG,TTC,AAG,AGGTCA,CTAGCT
+sample1_ins,AAACCCGGG,TTC,AAG,AGGTCA,CTAGCT
+sample1_del,AAACCCGGG,TTC,AAG,AGGTCA,CTAGCT
 sample2,TGCAGCTA,CA,TG,GATCCA,CGAAGT"""
     return StringIO(csv)
 
@@ -50,6 +52,30 @@ def processed_meta_data():
     """Provides expected output dictionary for metadata preprocessing."""
     return {
         'sample1': {
+            'target': 'AAACCCGGG',
+            'target_rc': 'CCCGGGTTT',
+            'up': 'TTC',
+            'up_rc': 'GAA',
+            'down': 'AAG',
+            'down_rc': 'CTT',
+            'fp': 'AGGTCA',
+            'fp_rc': 'TGACCT',  # reverse_complement("AGGTCA")
+            'rp': 'CTAGCT',
+            'rp_rc': 'AGCTAG'   # reverse_complement("CTAGCT")
+        },
+        'sample1_ins': {
+            'target': 'AAACCCGGG',
+            'target_rc': 'CCCGGGTTT',
+            'up': 'TTC',
+            'up_rc': 'GAA',
+            'down': 'AAG',
+            'down_rc': 'CTT',
+            'fp': 'AGGTCA',
+            'fp_rc': 'TGACCT',  # reverse_complement("AGGTCA")
+            'rp': 'CTAGCT',
+            'rp_rc': 'AGCTAG'   # reverse_complement("CTAGCT")
+        },
+        'sample1_del': {
             'target': 'AAACCCGGG',
             'target_rc': 'CCCGGGTTT',
             'up': 'TTC',
