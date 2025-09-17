@@ -104,26 +104,26 @@ class FASTQDemultiplexer:
             fp, rp = info["fp"], info["rp"]
             fp_rc, rp_rc = info["fp_rc"], info["rp_rc"]
 
-            # Forward match: fp before rp
+            # Forward match: fp before rp_rc
             fp_positions = self._find_subseq_with_mismatch(seq, fp)
-            rp_positions = self._find_subseq_with_mismatch(seq, rp)
+            rp_rc_positions = self._find_subseq_with_mismatch(seq, rp_rc)
             for fp_pos in fp_positions:
-                for rp_pos in rp_positions:
-                    if fp_pos < rp_pos:
-                        dist = rp_pos - (fp_pos + len(fp))
+                for rp_rc_pos in rp_rc_positions:
+                    if fp_pos < rp_rc_pos:
+                        dist = rp_rc_pos - (fp_pos + len(fp))
                         if self.min_dist <= dist <= self.max_dist:
                             return sample
 
-            # Reverse complement match: rp_rc before fp_rc
-            rp_rc_positions = self._find_subseq_with_mismatch(seq, rp_rc)
+            # Reverse complement match: rp before fp_rc 
+            rp_positions = self._find_subseq_with_mismatch(seq, rp)
             fp_rc_positions = self._find_subseq_with_mismatch(seq, fp_rc)
-            for rp_rc_pos in rp_rc_positions:
+            for rp_pos in rp_positions:
                 for fp_rc_pos in fp_rc_positions:
-                    if rp_rc_pos < fp_rc_pos:
-                        dist = fp_rc_pos - (rp_rc_pos + len(rp_rc))
+                    if rp_pos < fp_rc_pos:
+                        dist = fp_rc_pos - (rp_pos + len(rp))
                         if self.min_dist <= dist <= self.max_dist:
                             return sample
-            return "unknown"
+        return "unknown"
 
     def demultiplex(self, fastq_file: Path | str) -> None:
         """Demultiplexes FASTQ file into samle-specific .fq.gz files.
