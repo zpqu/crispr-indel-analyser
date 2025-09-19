@@ -60,6 +60,17 @@ crispr-indel-analyser \
   --mismatch 1
 ```
 
+**Run the pipeline with example data**
+
+```bash
+crispr-indel-analyser \
+  --fastq data/test_40k_1.merged.fastq.gz \
+  --meta-csv data/sample_meta_data.csv \
+  --demux-dir demultiplexed \
+  --result-dir results \
+  --mismatch 1
+```
+
 **Options**
 
 | Option | Description |
