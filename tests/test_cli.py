@@ -63,7 +63,7 @@ sample1,AAACCCGGG,TTC,AAG,AGGTCA,CTAGCT""")
 def test_main_cli_run_successful(temp_dirs):
     """Test full pipeline runs successfully with valid inputs."""
     cmd = [
-        "python", "main.py",
+        "crispr-indel-analyser",
         "--fastq", str(temp_dirs["fastq"]),
         "--meta-csv", str(temp_dirs["meta_csv"]),
         "--demux-dir", str(temp_dirs["demux_dir"]),
@@ -105,7 +105,7 @@ def test_main_cli_json_output(temp_dirs):
     json_results.mkdir(exist_ok=True)
 
     cmd = [
-        "python", "main.py",
+        "crispr-indel-analyser",
         "--fastq", str(temp_dirs["fastq"]),
         "--meta-csv", str(temp_dirs["meta_csv"]),
         "--result-dir", str(json_results),
@@ -133,7 +133,7 @@ def test_main_reverse_strand_read(temp_dirs):
         )
 
     cmd = [
-        "python", "main.py",
+        "crispr-indel-analyser",
         "--fastq", str(rev_fastq),
         "--meta-csv", str(temp_dirs["meta_csv"]),
         "--result-dir", str(temp_dirs["results_dir"]),
@@ -153,7 +153,7 @@ def test_main_reverse_strand_read(temp_dirs):
 def test_main_invalid_fastq_file(temp_dirs):
     """Test graceful handling of missing FASTQ."""
     result = subprocess.run([
-        "python", "main.py",
+        "crispr-indel-analyser",
         "--fastq", "nonexistent.fq.gz",
         "--meta-csv", str(temp_dirs["meta_csv"]),
         "--result-dir", str(temp_dirs["results_dir"])
@@ -168,7 +168,7 @@ def test_main_invalid_meta_csv(tmp_path):
     bad_csv.write_text("sample,missing_col\ns1,val")
 
     result = subprocess.run([
-        "python", "main.py",
+        "crispr-indel-analyser",
         "--fastq", "data/test.fq.gz",
         "--meta-csv", str(bad_csv),
         "--result-dir", str(tmp_path / "out")
@@ -181,7 +181,7 @@ def test_main_invalid_meta_csv(tmp_path):
 def test_main_help_shows_usage():
     """Test --help prints usage information."""
     result = subprocess.run(
-        ["python", "main.py", "--help"], 
+        ["crispr-indel-analyser", "--help"], 
         capture_output=True, text=True
     )
 
@@ -199,7 +199,7 @@ def test_main_no_samples_matched(temp_dirs):
         f.write("@readX\nATGCATGCATGC\n+\nIIIIIIIIIIII\n")
 
     cmd = [
-        "python", "main.py",
+        "crispr-indel-analyser",
         "--fastq", str(bad_fastq),
         "--meta-csv", str(temp_dirs["meta_csv"]),
         "--result-dir", str(temp_dirs["results_dir"])
