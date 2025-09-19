@@ -1,0 +1,44 @@
+# Python generated files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+partiallyciated/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.core
+
+# Virtual environments
+.venv/
+
+# Editor
+*.swp
+*.swo
+*~
+
+# Results and outputs
+results/
+demultiplexed/
+output/
+tmp/
+temp/
+*.csv
+*.txt
+*.json
+
+# Keep test data
+!data/test_40k_1.merged.fastq.gz
+!data/sample_meta_data.csv
+
