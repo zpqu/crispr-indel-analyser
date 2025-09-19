@@ -24,7 +24,7 @@ from pathlib import Path
 from typing import Optional, Literal, Any
 import json
 import pandas as pd
-from src.utils.helpers import hamming_distance
+from src.utils.helpers import hamming_distance, reverse_complement
 from src.io.fastq import read_fastq
 from src.analysis.aligner import ParasailAligner
 from src.io.writer import write_table
@@ -103,12 +103,25 @@ class IndelAnalyser:
 
         for record in read_fastq(fastq_path):
             seq = str(record.seq)
-            matched, up_end, down_start = self._match_flanks(seq, up, down)
-            if not matched:
+            rc_seq = reverse_complement(seq)
+            matched, up_end, down_start = self._match_flanks(
+                seq, 
+                up, 
+                down, 
+            )
+            rc_matched, rc_up_end, rc_down_start = self._match_flanks(
+                rc_seq, 
+                up, 
+                down, 
+            )
+            if not matched and not rc_matched:
                 stats["num_skip"] += 1
                 continue
+            if matched:
+                window_seq = seq[up_end:down_start]
+            else:
+                window_seq = rc_seq[rc_up_end:rc_down_start]
 
-            window_seq = seq[up_end:down_start]
             aligned_query, aligned_ref = self.aligner.align_global(window_seq, target)
 
             if "-" in aligned_query and "-" not in aligned_ref:
