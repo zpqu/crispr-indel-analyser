@@ -21,8 +21,11 @@ python -m venv venv
 source venv/bin/activate  # Linux/Mac
 # venv\Scripts\activate   # Windows
 
-# Install dependencies
-pip install -r requirements.txt
+# Install from source
+pip install -e .
+
+# Verigy the installation
+crispr-indel-analyser
 ```
 
 ## Quick Start
@@ -49,7 +52,7 @@ sample2,TGCAGCTA,CA,TG,GATCCA,CGAAGT
 ### 2. Run the Pipeline
 
 ```bash
-python main.py \
+crispr-indel-analyser \
   --fastq data/mixed.fq.gz \
   --meta-csv data/meta.csv \
   --demux-dir demultiplexed \
