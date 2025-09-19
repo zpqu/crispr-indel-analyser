@@ -145,8 +145,7 @@ class IndelAnalyser:
         total = (
             stats["num_ins"] + 
             stats["num_del"] + 
-            stats["num_other"] + 
-            stats["num_skip"]
+            stats["num_other"]
         )
         stats["per_ins"] = (
             round(stats["num_ins"] / total * 100, 2) 
