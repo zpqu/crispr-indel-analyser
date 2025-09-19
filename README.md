@@ -93,9 +93,11 @@ Each result includes:
 
 | Field | Description |
 |-------|-------------|
-| `notINDEL` | Unedited reads |
-| `NumIns` / `NumDels` | Insertion and deletion counts |
-| `Ins_per` / `Dels_per` | Editing efficiency (%) |
+| `num_ins` / `num_del` | Insertion and deletion counts |
+| `num_other` | Unedited reads |
+| `num_skip` |  Reads without matched barcodes |
+| `per_ins` / `per_del` | Editing efficiency (%), (num_ins or num_del)/(num_ins + num_del + num_other)|
+| `pos_ins` / `pos_del` | Insertion and deletion positions counts (based on target window) |
 
 ## License
 MIT © 2025 Zhipeng QU
