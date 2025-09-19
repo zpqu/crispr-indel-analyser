@@ -19,12 +19,11 @@ cd crispr-indel-analyser
 # (Optional) Create virtual environment
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
 
 # Install from source
 pip install -e .
 
-# Verigy the installation
+# Verify the installation
 crispr-indel-analyser
 ```
 
