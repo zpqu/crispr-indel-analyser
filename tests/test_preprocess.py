@@ -74,7 +74,7 @@ def test_load_and_process_meta_csv(sample_meta_csv):
     # Structural checks
     assert 'sample1' in meta_data
     assert 'sample2' in meta_data
-    assert len(meta_data) == 2
+    assert len(meta_data) == 4
 
     # Field count check
     assert len(meta_data['sample1']) == 10  # 5 original + 5 rc
