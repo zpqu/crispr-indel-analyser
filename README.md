@@ -17,8 +17,8 @@ git clone https://github.com/zpqu/crispr-indel-analyser.git
 cd crispr-indel-analyser
 
 # (Optional) Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
+python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
 
 # Install from source
 pip install -e .
