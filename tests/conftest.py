@@ -33,7 +33,7 @@ import gzip
 import pytest
 from io import StringIO
 from pathlib import Path
-from src.analysis.indel_analyser import IndelAnalyser
+from crispr_indel_analyser.analysis.indel_analyser import IndelAnalyser
 
 
 @pytest.fixture

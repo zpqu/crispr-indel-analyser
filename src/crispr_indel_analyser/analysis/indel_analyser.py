@@ -24,10 +24,10 @@ from pathlib import Path
 from typing import Optional, Literal, Any
 import json
 import pandas as pd
-from src.utils.helpers import hamming_distance, reverse_complement
-from src.io.fastq import read_fastq
-from src.analysis.aligner import ParasailAligner
-from src.io.writer import write_table
+from crispr_indel_analyser.utils.helpers import hamming_distance, reverse_complement
+from crispr_indel_analyser.io.fastq import read_fastq
+from crispr_indel_analyser.analysis.aligner import ParasailAligner
+from crispr_indel_analyser.io.writer import write_table
 
 
 class IndelAnalyser:

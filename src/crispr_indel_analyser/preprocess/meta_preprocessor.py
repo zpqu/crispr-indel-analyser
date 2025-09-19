@@ -32,7 +32,7 @@ from typing import TextIO
 from os import PathLike
 import os
 import pandas as pd
-from src.utils.helpers import reverse_complement, clean_sequence
+from crispr_indel_analyser.utils.helpers import reverse_complement, clean_sequence
 
 
 def load_and_process_meta_csv(meta_csv: str | PathLike | TextIO) -> dict:

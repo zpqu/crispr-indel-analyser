@@ -22,7 +22,7 @@
 from pathlib import Path
 from unittest.mock import patch, Mock
 import pytest
-from src.demux.fastq_demux import FASTQDemultiplexer
+from crispr_indel_analyser.demux.fastq_demux import FASTQDemultiplexer
 
 
 class TestFASTQDemultiplexer:

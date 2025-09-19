@@ -22,7 +22,7 @@
 
 import pytest
 import math
-from src.utils.helpers import reverse_complement, clean_sequence, hamming_distance
+from crispr_indel_analyser.utils.helpers import reverse_complement, clean_sequence, hamming_distance
 
 
 def test_reverse_complement():

@@ -24,8 +24,8 @@ import pandas as pd
 import pytest
 import gzip
 from pathlib import Path 
-from src.io.writer import write_table
-from src.io.fastq import read_fastq
+from crispr_indel_analyser.io.writer import write_table
+from crispr_indel_analyser.io.fastq import read_fastq
 
 
 def test_write_table(tmp_path):

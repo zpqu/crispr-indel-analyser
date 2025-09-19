@@ -19,7 +19,7 @@
 
 """Unit tests for ParasailAligner."""
 
-from src.analysis.aligner import ParasailAligner
+from crispr_indel_analyser.analysis.aligner import ParasailAligner
 
 
 class TestParasailAligner:

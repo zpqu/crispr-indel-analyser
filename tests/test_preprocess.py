@@ -31,7 +31,7 @@ Uses pytest fixtures defined in `conftest.py` to ensure consistency
 and reduce code duplication.
 """
 
-from src.preprocess.meta_preprocessor import load_and_process_meta_csv
+from crispr_indel_analyser.preprocess.meta_preprocessor import load_and_process_meta_csv
 
 
 def test_load_and_process_meta_csv(sample_meta_csv):

@@ -28,9 +28,9 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from src.preprocess.meta_preprocessor import load_and_process_meta_csv
-from src.demux.fastq_demux import FASTQDemultiplexer
-from src.analysis.indel_analyser import IndelAnalyser
+from crispr_indel_analyser.preprocess.meta_preprocessor import load_and_process_meta_csv
+from crispr_indel_analyser.demux.fastq_demux import FASTQDemultiplexer
+from crispr_indel_analyser.analysis.indel_analyser import IndelAnalyser
 
 
 # Configure logger

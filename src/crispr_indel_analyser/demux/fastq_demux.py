@@ -27,8 +27,8 @@ import gzip
 from Bio import SeqIO
 from pathlib import Path
 from typing import TextIO
-from src.preprocess.meta_preprocessor import load_and_process_meta_csv
-from src.utils.helpers import reverse_complement, hamming_distance
+from crispr_indel_analyser.preprocess.meta_preprocessor import load_and_process_meta_csv
+from crispr_indel_analyser.utils.helpers import reverse_complement, hamming_distance
 
 
 class FASTQDemultiplexer:

@@ -24,7 +24,7 @@ from unittest.mock import patch
 from pathlib import Path
 import json
 import pandas as pd
-from src.analysis.indel_analyser import IndelAnalyser
+from crispr_indel_analyser.analysis.indel_analyser import IndelAnalyser
 
 
 class TestIndelAnalyser:
