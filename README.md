@@ -50,13 +50,9 @@ sample2,TGCAGCTA,CA,TG,GATCCA,CGAAGT
 
 ### 2. Run the Pipeline
 
+**Get help/options**
 ```bash
-crispr-indel-analyser \
-  --fastq data/mixed.fq.gz \
-  --meta-csv data/meta.csv \
-  --demux-dir demultiplexed \
-  --result-dir results \
-  --mismatch 1
+crispr-indel-analyser -h
 ```
 
 **Run the pipeline with example data**
@@ -64,21 +60,15 @@ crispr-indel-analyser \
 ```bash
 crispr-indel-analyser \
   --fastq data/test_40k_1.merged.fastq.gz \
-  --meta-csv data/sample_meta_data.csv \
-  --demux-dir demultiplexed \
-  --result-dir results \
-  --mismatch 1
+  --meta-csv data/sample_meta_data.csv
 ```
 
-**Options**
+**Required options**
 
 | Option | Description |
 |--------|-------------|
 | `--fastq` | Path to input FASTQ (required) |
 | `--meta-csv` | Path to metadata CSV (required) |
-| `--demux-dir` | Output directory for split FASTQs (default: `demultiplexed`) |
-| `--result-dir` | Output directory for analysis results (default: `results`) |
-| `--mismatch` | Allowed barcode mismatches: 0, 1, or 2 (default: `0`) |
 
 ### Output
 
@@ -99,5 +89,6 @@ Each result includes:
 | `pos_ins` / `pos_del` | Insertion and deletion positions counts (based on target window) |
 
 ## License
-MIT © 2025 Zhipeng QU
+MIT © 2025 Zhipeng Qu
+
 See [LICENSE](LICENSE) for details.
