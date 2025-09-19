@@ -98,5 +98,5 @@ Each result includes:
 | `Ins_per` / `Dels_per` | Editing efficiency (%) |
 
 ## License
-MIT © 2025 Your Name
+MIT © 2025 Zhipeng QU
 See [LICENSE](LICENSE) for details.
