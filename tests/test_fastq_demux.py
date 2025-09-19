@@ -72,8 +72,8 @@ class TestFASTQDemultiplexer:
             min_dist=5,
             max_dist=100
         )
-        # fp + spacer + target + rp
-        seq = "AGGTCA" + "NNN" + "AAACCCGGG" + "CTAGCT"
+        # fp + spacer + target + rp_rc
+        seq = "AGGTCA" + "NNN" + "AAACCCGGG" + "AGCTAG"
         assert demux._match_read(seq) == "sample1"
 
     def test_match_read_with_umi(self, sample_meta_csv):
@@ -84,8 +84,8 @@ class TestFASTQDemultiplexer:
             min_dist=5,
             max_dist=100
         )
-        # fp + UMI + target + rp
-        seq = "AGGTCA" + "AAACCCGGG" + "CTAGCT"
+        # fp + UMI + target + rp_rc
+        seq = "AGGTCA" + "AAACCCGGG" + "AGCTAG"
         assert demux._match_read(seq) == "sample1"
 
     def test_match_read_reverse_complement(self, sample_meta_csv):
@@ -96,8 +96,8 @@ class TestFASTQDemultiplexer:
             min_dist=5,
             max_dist=100
         )
-        # rp_rc = AGCTAG, fp_rc = TGACCT
-        rev_seq = "AGCTAGNNNAGCTGCANNNTGACCT"
+        # rp = CTAGCT, fp_rc = TGACCT
+        rev_seq = "CTAGCTNNNAGCTGCANNNTGACCT"
         assert demux._match_read(rev_seq) == "sample1"
 
     def test_match_read_too_close_fails(self, sample_meta_csv):
